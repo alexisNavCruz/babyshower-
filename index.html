@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shower · Dylan & Francesca</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --sage: #7a9e87;
+    --sage-light: #b5cebe;
+    --sage-pale: #e8f0eb;
+    --cream: #faf7f2;
+    --warm: #f2ece0;
+    --gold: #c9a96e;
+    --text: #2c2c2a;
+    --text-muted: #6b6b67;
+    --error: #c0513a;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--warm) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .page { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+  
+  /* Selector de idiomas elegante */
+  .lang-switcher {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .lang-btn {
+    background: transparent;
+    border: 1px solid var(--sage-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    transition: all 0.3s;
+  }
+  .lang-btn.active {
+    background: var(--sage);
+    color: white;
+    border-color: var(--sage);
+  }
+
+  .header { text-align: center; margin-bottom: 3rem; animation: fadeUp 0.8s ease both; }
+  .ornament { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 1.5rem; }
+  .ornament-line { height: 0.5px; width: 60px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .ornament-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
+  .ornament-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .label-top { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 0.75rem; }
+  .title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 60px); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 0.5rem; }
+  .title em { font-style: italic; color: var(--sage); }
+  .subtitle { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--text-muted); margin-bottom: 2rem; }
+  .event-info { display: flex; justify-content: center; }
+  .event-pill { display: flex; flex-direction: column; align-items: center; padding: 14px 28px; background: white; border: 0.5px solid var(--sage-light); }
+  .event-pill:first-child { border-radius: 40px 0 0 40px; border-right: none; }
+  .event-pill:last-child { border-radius: 0 40px 40px 0; }
+  .pill-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
+  .pill-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--text); }
+  .baby-icon { font-size: 36px; display: block; margin: 1.5rem auto 0; animation: float 3s ease-in-out infinite; }
+  .card { background: white; border-radius: 20px; border: 0.5px solid rgba(122,158,135,0.3); padding: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; box-shadow: 0 4px 40px rgba(122,158,135,0.08); }
+  .card-intro { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 2rem; line-height: 1.6; }
+  .divider { border: none; border-top: 0.5px solid var(--sage-pale); margin: 1.5rem 0; }
+  .field { margin-bottom: 1.25rem; }
+  .field-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; }
+  input[type=text] { width: 100%; padding: 13px 16px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); background: var(--cream); border: 0.5px solid rgba(122,158,135,0.3); border-radius: 10px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+  input[type=text]:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(122,158,135,0.12); }
+  input[type=text].field-error { border-color: var(--error); }
+  .error-msg { font-size: 12px; color: var(--error); margin-top: 5px; display: none; }
+  .error-msg.visible { display: block; }
+  .radio-group { display: flex; gap: 10px; }
+  .radio-btn { flex: 1; padding: 13px 12px; text-align: center; font-size: 14px; color: var(--text-muted); background: var(--cream); border: 0.5px solid rgba(122,158,135,0.3); border-radius: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
+  .radio-btn:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+  .radio-btn.active-si { background: var(--sage-pale); border-color: var(--sage); color: #3a6b4d; font-weight: 500; }
+  .radio-btn.active-no { background: #fdf0ed; border-color: #e0917a; color: #7a3020; font-weight: 500; }
+  .btn-submit { width: 100%; padding: 15px; margin-top: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: white; background: var(--sage); border: none; border-radius: 10px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+  .btn-submit:hover { background: #5e8570; }
+  .btn-submit:active { transform: scale(0.98); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .success-section { display: none; text-align: center; padding: 2rem 1rem; }
+  .success-section.show { display: block; animation: fadeUp 0.5s ease both; }
+  .success-icon { font-size: 56px; margin-bottom: 1rem; }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; margin-bottom: 0.75rem; }
+  .success-msg { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+  .sending-msg { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 10px; display: none; }
+  .net-error { text-align: center; font-size: 13px; color: var(--error); margin-top: 10px; display: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (max-width: 480px) { .card { padding: 1.75rem 1.25rem; } .event-pill { padding: 12px 18px; } }
+
+  /* Ocultar francés por defecto */
+  [data-lang="fr"] { display: none; }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="btn-lang-es" onclick="switchLanguage('es')">ESP</button>
+    <button class="lang-btn" id="btn-lang-fr" onclick="switchLanguage('fr')">FRA</button>
+  </div>
+
+  <header class="header">
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <p class="label-top" data-lang="es">¡Están esperando un varoncito!</p>
+    <p class="label-top" data-lang="fr">Ils attendent un petit garçon !</p>
+    
+    <h1 class="title">Dylan<br>&amp; <em>Francesca</em></h1>
+    
+    <p class="subtitle" data-lang="es">Te invitan a celebrar su Baby Shower</p>
+    <p class="subtitle" data-lang="fr">Vous invitent à fêter leur Baby Shower</p>
+    
+    <div class="event-info">
+      <div class="event-pill">
+        <span class="pill-label" data-lang="es">Fecha</span>
+        <span class="pill-label" data-lang="fr">Date</span>
+        <span class="pill-value" data-lang="es">22 de Agosto</span>
+        <span class="pill-value" data-lang="fr">22 Août</span>
+      </div>
+      <div class="event-pill">
+        <span class="pill-label" data-lang="es">Hora</span>
+        <span class="pill-label" data-lang="fr">Heure</span>
+        <span class="pill-value">16:00</span>
+      </div>
+    </div>
+    <span class="baby-icon">🍼</span>
+  </header>
+
+  <div class="card" id="form-card">
+    <p class="card-intro" data-lang="es">Los padres Dylan y Francesca te esperan para celebrar el baby shower de nuestro hijo el día 22 de agosto a las 16.</p>
+    <p class="card-intro" data-lang="fr">Les parents Dylan et Francesca vous attendent pour fêter la baby shower de notre fils le 22 août à 16h.</p>
+    <hr class="divider">
+
+    <form id="shower-form" action="https://formsubmit.co/janethbelle@gmail.com" method="POST" onsubmit="return false;">
+      <input type="hidden" name="_subject" id="form-subject" value="Confirmación Baby Shower">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="Asistencia" id="hidden-asistencia" value="">
+
+      <div class="field">
+        <label class="field-label" for="nombre" data-lang="es">Nombre</label>
+        <label class="field-label" for="nombre" data-lang="fr">Prénom</label>
+        <input type="text" id="nombre" name="Nombre" placeholder="..." autocomplete="given-name" />
+        <p class="error-msg" id="err-nombre" data-lang="es">Por favor ingresa tu nombre.</p>
+        <p class="error-msg" id="err-nombre-fr" data-lang="fr">S'il vous plaît, entrez votre prénom.</p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="apellido" data-lang="es">Apellido</label>
+        <label class="field-label" for="apellido" data-lang="fr">Nom de famille</label>
+        <input type="text" id="apellido" name="Apellido" placeholder="..." autocomplete="family-name" />
+        <p class="error-msg" id="err-apellido" data-lang="es">Por favor ingresa tu apellido.</p>
+        <p class="error-msg" id="err-apellido-fr" data-lang="fr">S'il vous plaît, entrez votre nom.</p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" data-lang="es">¿Asistirás?</label>
+        <label class="field-label" data-lang="fr">Serez-vous présent(e) ?</label>
+        <div class="radio-group">
+          <div class="radio-btn" id="btn-si" onclick="selectAsiste('si')">✓ &nbsp;<span data-lang="es">Sí asistiré</span><span data-lang="fr">Oui, je serai là</span></div>
+          <div class="radio-btn" id="btn-no" onclick="selectAsiste('no')">✗ &nbsp;<span data-lang="es">No podré asistir</span><span data-lang="fr">Non, je ne pourrai pas</span></div>
+        </div>
+        <p class="error-msg" id="err-asiste" data-lang="es">Por favor selecciona una opción.</p>
+        <p class="error-msg" id="err-asiste-fr" data-lang="fr">S'il vous plaît, sélectionnez une option.</p>
+      </div>
+
+      <hr class="divider">
+      <button class="btn-submit" id="btn-enviar" onclick="enviar()">
+        <span data-lang="es">Enviar confirmación →</span>
+        <span data-lang="fr">Envoyer la confirmation →</span>
+      </button>
+    </form>
+    
+    <p class="sending-msg" id="sending-msg" data-lang="es">Enviando... ⏳</p>
+    <p class="sending-msg" id="sending-msg-fr" data-lang="fr">Envoi en cours... ⏳</p>
+    <p class="net-error" id="net-error" data-lang="es">Hubo un error al enviar. Por favor intenta de nuevo.</p>
+    <p class="net-error" id="net-error-fr" data-lang="fr">Une erreur est survenue. Veuillez réessayer.</p>
+  </div>
+
+  <div class="success-section" id="success-section">
+    <div class="success-icon" id="success-icon">🎀</div>
+    <h2 class="success-title" id="success-title">¡Gracias!</h2>
+    <p class="success-msg" id="success-msg"></p>
+  </div>
+
+</main>
+
+<script>
+  let asiste = null;
+  let currentLang = 'es';
+
+  function switchLanguage(lang) {
+    currentLang = lang;
+    document.getElementById('btn-lang-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-lang-fr').classList.toggle('active', lang === 'fr');
+
+    const esElements = document.querySelectorAll('[data-lang="es"]');
+    const frElements = document.querySelectorAll('[data-lang="fr"]');
+
+    if (lang === 'es') {
+      esElements.forEach(el => el.style.display = (el.tagName === 'SPAN') ? 'inline' : 'block');
+      frElements.forEach(el => el.style.display = 'none');
+      document.getElementById('form-subject').value = "Confirmación Baby Shower - Dylan & Francesca";
+    } else {
+      esElements.forEach(el => el.style.display = 'none');
+      frElements.forEach(el => el.style.display = (el.tagName === 'SPAN') ? 'inline' : 'block');
+      document.getElementById('form-subject').value = "Confirmation Baby Shower - Dylan & Francesca";
+    }
+    
+    // Ocultar mensajes de error al cambiar de idioma para evitar desajustes
+    document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('visible'));
+  }
+
+  function selectAsiste(val) {
+    asiste = val;
+    document.getElementById('btn-si').className = 'radio-btn' + (val === 'si' ? ' active-si' : '');
+    document.getElementById('btn-no').className = 'radio-btn' + (val === 'no' ? ' active-no' : '');
+    
+    // Ocultar errores de asistencia
+    document.getElementById('err-asiste').classList.remove('visible');
+    document.getElementById('err-asiste-fr').classList.remove('visible');
+    
+    // Asignar el valor al input oculto que se envía por correo
+    document.getElementById('hidden-asistencia').value = val === 'si' ? 'Sí / Oui 🎉' : 'No / Non 😢';
+  }
+
+  async function enviar() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const apellido = document.getElementById('apellido').value.trim();
+    let ok = true;
+
+    // Validación Nombre
+    if (!nombre) {
+      document.getElementById(currentLang === 'es' ? 'err-nombre' : 'err-nombre-fr').classList.add('visible');
+      document.getElementById('nombre').classList.add('field-error');
+      ok = false;
+    }
+
+    // Validación Apellido
+    if (!apellido) {
+      document.getElementById(currentLang === 'es' ? 'err-apellido' : 'err-apellido-fr').classList.add('visible');
+      document.getElementById('apellido').classList.add('field-error');
+      ok = false;
+    }
+
+    // Validación Asistencia
+    if (!asiste) {
+      document.getElementById(currentLang === 'es' ? 'err-asiste' : 'err-asiste-fr').classList.add('visible');
+      ok = false;
+    }
+
+    if (!ok) return;
+
+    const btn = document.getElementById('btn-enviar');
+    btn.disabled = true;
+    
+    document.getElementById(currentLang === 'es' ? 'sending-msg' : 'sending-msg-fr').style.display = 'block';
+    document.getElementById('net-error').style.display = 'none';
+    document.getElementById('net-error-fr').style.display = 'none';
+
+    // Enviamos usando el método tradicional seguro para FormSubmit en hosting estático
+    try {
+      const form = document.getElementById('shower-form');
+      const formData = new FormData(form);
+      
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        document.getElementById('form-card').style.display = 'none';
+        document.getElementById('sending-msg').style.display = 'none';
+        document.getElementById('sending-msg-fr').style.display = 'none';
+        
+        const sec = document.getElementById('success-section');
+        sec.classList.add('show');
+        
+        document.getElementById('success-icon').textContent = asiste === 'si' ? '🎊' : '💙';
+        
+        if (currentLang === 'es') {
+          document.getElementById('success-title').textContent = asiste === 'si' ? '¡Nos vemos pronto!' : '¡Gracias por avisar!';
+          document.getElementById('success-msg').textContent = asiste === 'si'
+            ? nombre + ', ¡qué alegría! Te esperamos el 22 de agosto a las 4:00 PM para celebrar juntos.'
+            : nombre + ', sentiremos mucho tu ausencia. ¡Muchas gracias por avisarnos!';
+        } else {
+          document.getElementById('success-title').textContent = asiste === 'si' ? 'À bientôt !' : 'Merci de nous avoir prévenus !';
+          document.getElementById('success-msg').textContent = asiste === 'si'
+            ? nombre + ', quelle joie ! Nous vous attendons le 22 août à 16h00 pour faire la fête ensemble.'
+            : nombre + ', nous regretterons votre absence. Merci beaucoup d\'avoir pris le temps de nous prévenir !';
+        }
+      } else {
+        throw new Error('error');
+      }
+    } catch (e) {
+      btn.disabled = false;
+      document.getElementById('sending-msg').style.display = 'none';
+      document.getElementById('sending-msg-fr').style.display = 'none';
+      document.getElementById(currentLang === 'es' ? 'net-error' : 'net-error-fr').style.display = 'block';
+    }
+  }
+
+  // Quitar errores visuales al escribir
+  document.getElementById('nombre').addEventListener('input', function() {
+    if (this.value.trim()) { 
+      this.classList.remove('field-error'); 
+      document.getElementById('err-nombre').classList.remove('visible'); 
+      document.getElementById('err-nombre-fr').classList.remove('visible'); 
+    }
+  });
+  document.getElementById('apellido').addEventListener('input', function() {
+    if (this.value.trim()) { 
+      this.classList.remove('field-error'); 
+      document.getElementById('err-apellido').classList.remove('visible'); 
+      document.getElementById('err-apellido-fr').classList.remove('visible'); 
+    }
+  });
+  
+  // Forzar inicialización limpia de spans inline
+  document.querySelectorAll('span[data-lang="es"]').forEach(s => s.style.display = 'inline');
+</script>
+</body>
+</html>
