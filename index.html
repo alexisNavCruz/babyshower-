@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Shower · Dylan & Francesca</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --sage: #7a9e87;
+    --sage-light: #b5cebe;
+    --sage-pale: #e8f0eb;
+    --cream: #faf7f2;
+    --warm: #f2ece0;
+    --gold: #c9a96e;
+    --text: #2c2c2a;
+    --text-muted: #6b6b67;
+    --error: #c0513a;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--warm) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .page { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  .header { text-align: center; margin-bottom: 3rem; animation: fadeUp 0.8s ease both; }
+  .ornament { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 1.5rem; }
+  .ornament-line { height: 0.5px; width: 60px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .ornament-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
+  .ornament-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .label-top { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 0.75rem; }
+  .title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 60px); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 0.5rem; }
+  .title em { font-style: italic; color: var(--sage); }
+  .subtitle { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--text-muted); margin-bottom: 2rem; }
+  .event-info { display: flex; justify-content: center; }
+  .event-pill { display: flex; flex-direction: column; align-items: center; padding: 14px 28px; background: white; border: 0.5px solid var(--sage-light); }
+  .event-pill:first-child { border-radius: 40px 0 0 40px; border-right: none; }
+  .event-pill:last-child { border-radius: 0 40px 40px 0; }
+  .pill-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
+  .pill-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--text); }
+  .baby-icon { font-size: 36px; display: block; margin: 1.5rem auto 0; animation: float 3s ease-in-out infinite; }
+  .card { background: white; border-radius: 20px; border: 0.5px solid rgba(122,158,135,0.3); padding: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; box-shadow: 0 4px 40px rgba(122,158,135,0.08); }
+  .card-intro { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 2rem; line-height: 1.6; }
+  .divider { border: none; border-top: 0.5px solid var(--sage-pale); margin: 1.5rem 0; }
+  .field { margin-bottom: 1.25rem; }
+  .field-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; }
+  input[type=text] { width: 100%; padding: 13px 16px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); background: var(--cream); border: 0.5px solid rgba(122,158,135,0.3); border-radius: 10px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+  input[type=text]:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(122,158,135,0.12); }
+  input[type=text].field-error { border-color: var(--error); }
+  .error-msg { font-size: 12px; color: var(--error); margin-top: 5px; display: none; }
+  .error-msg.visible { display: block; }
+  .radio-group { display: flex; gap: 10px; }
+  .radio-btn { flex: 1; padding: 13px 12px; text-align: center; font-size: 14px; color: var(--text-muted); background: var(--cream); border: 0.5px solid rgba(122,158,135,0.3); border-radius: 10px; cursor: pointer; transition: all 0.2s; user-select: none; }
+  .radio-btn:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+  .radio-btn.active-si { background: var(--sage-pale); border-color: var(--sage); color: #3a6b4d; font-weight: 500; }
+  .radio-btn.active-no { background: #fdf0ed; border-color: #e0917a; color: #7a3020; font-weight: 500; }
+  .btn-submit { width: 100%; padding: 15px; margin-top: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: white; background: var(--sage); border: none; border-radius: 10px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+  .btn-submit:hover { background: #5e8570; }
+  .btn-submit:active { transform: scale(0.98); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .success-section { display: none; text-align: center; padding: 2rem 1rem; }
+  .success-section.show { display: block; animation: fadeUp 0.5s ease both; }
+  .success-icon { font-size: 56px; margin-bottom: 1rem; }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; margin-bottom: 0.75rem; }
+  .success-msg { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+  .sending-msg { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 10px; display: none; }
+  .net-error { text-align: center; font-size: 13px; color: var(--error); margin-top: 10px; display: none; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (max-width: 480px) { .card { padding: 1.75rem 1.25rem; } .event-pill { padding: 12px 18px; } }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="header">
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line right"></div>
+    </div>
+    <p class="label-top">¡Están esperando un varoncito!</p>
+    <h1 class="title">Dylan<br>&amp; <em>Francesca</em></h1>
+    <p class="subtitle">Te invitan a celebrar su Baby Shower</p>
+    <div class="event-info">
+      <div class="event-pill">
+        <span class="pill-label">Fecha</span>
+        <span class="pill-value">22 de Agosto</span>
+      </div>
+      <div class="event-pill">
+        <span class="pill-label">Hora</span>
+        <span class="pill-value">4:00 PM</span>
+      </div>
+    </div>
+    <span class="baby-icon">🍼</span>
+  </header>
+
+  <div class="card" id="form-card">
+    <p class="card-intro">Tu presencia es el mejor regalo.<br>Confirma tu asistencia a continuación.</p>
+    <hr class="divider">
+
+    <div class="field">
+      <label class="field-label" for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Tu nombre" autocomplete="given-name" />
+      <p class="error-msg" id="err-nombre">Por favor ingresa tu nombre.</p>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="apellido">Apellido</label>
+      <input type="text" id="apellido" placeholder="Tu apellido" autocomplete="family-name" />
+      <p class="error-msg" id="err-apellido">Por favor ingresa tu apellido.</p>
+    </div>
+
+    <div class="field">
+      <label class="field-label">¿Asistirás?</label>
+      <div class="radio-group">
+        <div class="radio-btn" id="btn-si" onclick="selectAsiste('si')">✓ &nbsp;Sí asistiré</div>
+        <div class="radio-btn" id="btn-no" onclick="selectAsiste('no')">✗ &nbsp;No podré asistir</div>
+      </div>
+      <p class="error-msg" id="err-asiste">Por favor selecciona una opción.</p>
+    </div>
+
+    <hr class="divider">
+    <button class="btn-submit" id="btn-enviar" onclick="enviar()">Enviar confirmación →</button>
+    <p class="sending-msg" id="sending-msg">Enviando... ⏳</p>
+    <p class="net-error" id="net-error">Hubo un error al enviar. Por favor intenta de nuevo.</p>
+  </div>
+
+  <div class="success-section" id="success-section">
+    <div class="success-icon" id="success-icon">🎀</div>
+    <h2 class="success-title" id="success-title">¡Gracias!</h2>
+    <p class="success-msg" id="success-msg"></p>
+  </div>
+
+</main>
+
+<script>
+  // ─────────────────────────────────────────────────────────
+  // PASO ÚNICO PARA ACTIVAR EL ENVÍO:
+  // 1. Ve a https://formspree.io y crea cuenta gratis
+  // 2. Crea un nuevo formulario con janethbelle@gmail.com
+  // 3. Copia el ID (ej: xpzgwkqr) y pégalo abajo
+  // ─────────────────────────────────────────────────────────
+  const FORMSPREE_ID = "TU_ID_AQUI";
+
+  let asiste = null;
+
+  function selectAsiste(val) {
+    asiste = val;
+    document.getElementById('btn-si').className = 'radio-btn' + (val === 'si' ? ' active-si' : '');
+    document.getElementById('btn-no').className = 'radio-btn' + (val === 'no' ? ' active-no' : '');
+    document.getElementById('err-asiste').classList.remove('visible');
+  }
+
+  async function enviar() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const apellido = document.getElementById('apellido').value.trim();
+    let ok = true;
+
+    document.getElementById('err-nombre').classList.toggle('visible', !nombre);
+    document.getElementById('nombre').classList.toggle('field-error', !nombre);
+    if (!nombre) ok = false;
+
+    document.getElementById('err-apellido').classList.toggle('visible', !apellido);
+    document.getElementById('apellido').classList.toggle('field-error', !apellido);
+    if (!apellido) ok = false;
+
+    if (!asiste) { document.getElementById('err-asiste').classList.add('visible'); ok = false; }
+    if (!ok) return;
+
+    const btn = document.getElementById('btn-enviar');
+    btn.disabled = true;
+    document.getElementById('sending-msg').style.display = 'block';
+    document.getElementById('net-error').style.display = 'none';
+
+    try {
+      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          nombre: nombre,
+          apellido: apellido,
+          asistencia: asiste === 'si' ? 'Sí asistirá 🎉' : 'No podrá asistir 😢',
+          evento: 'Baby Shower Dylan & Francesca · 22 de Agosto · 4:00 PM'
+        })
+      });
+
+      if (res.ok) {
+        document.getElementById('form-card').style.display = 'none';
+        document.getElementById('sending-msg').style.display = 'none';
+        const sec = document.getElementById('success-section');
+        sec.classList.add('show');
+        document.getElementById('success-icon').textContent = asiste === 'si' ? '🎊' : '💙';
+        document.getElementById('success-title').textContent = asiste === 'si' ? '¡Nos vemos pronto!' : '¡Gracias por avisar!';
+        document.getElementById('success-msg').textContent = asiste === 'si'
+          ? nombre + ', ¡qué alegría! Te esperamos el 22 de agosto a las 4:00 PM para celebrar juntos este momento tan especial.'
+          : nombre + ', sentiremos mucho tu ausencia. ¡Muchas gracias por tomarte el tiempo de avisarnos!';
+      } else {
+        throw new Error('error');
+      }
+    } catch (e) {
+      btn.disabled = false;
+      document.getElementById('sending-msg').style.display = 'none';
+      document.getElementById('net-error').style.display = 'block';
+    }
+  }
+
+  document.getElementById('nombre').addEventListener('input', function() {
+    if (this.value.trim()) { this.classList.remove('field-error'); document.getElementById('err-nombre').classList.remove('visible'); }
+  });
+  document.getElementById('apellido').addEventListener('input', function() {
+    if (this.value.trim()) { this.classList.remove('field-error'); document.getElementById('err-apellido').classList.remove('visible'); }
+  });
+</script>
+</body>
+</html>
