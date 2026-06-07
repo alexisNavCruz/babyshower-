@@ -26,18 +26,6 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-  
-  /* FONDO CON TU IMAGEN DE ENZO */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('invitacion.PNG');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15; 
-    pointer-events: none; z-index: 0;
-  }
 
   .page { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
   
@@ -66,9 +54,24 @@
     border-color: var(--sage);
   }
 
-  .header { text-align: center; margin-bottom: 2.5rem; animation: fadeUp 0.8s ease both; }
+  .header { text-align: center; margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
   
-  /* Contenedor de iconos superiores */
+  /* CONTENEDOR PARA LA TARJETA ARRIBA */
+  .tarjeta-container {
+    width: 100%;
+    margin-bottom: 2.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    background-color: white;
+    animation: fadeUp 0.8s ease both;
+  }
+  .tarjeta-imagen {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
   .ornament-icons {
     display: flex;
     justify-content: center;
@@ -86,7 +89,6 @@
   .ornament-line { height: 0.5px; width: 60px; background: linear-gradient(90deg, transparent, var(--gold)); }
   .ornament-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
   .ornament-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-  .label-top { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--sage); margin-bottom: 0.75rem; }
   
   .title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 60px); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 0.5rem; }
   .title em { font-style: italic; color: var(--sage); }
@@ -99,7 +101,26 @@
   .pill-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
   .pill-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--text); }
   
-  /* Contenedor para el icono de la llama flotante */
+  /* ESTILOS DEL DRESS CODE */
+  .dress-code-section {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  .dress-code-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 6px;
+  }
+  .dress-code-colors {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
   .baby-icon-container {
     display: flex;
     justify-content: center;
@@ -112,7 +133,8 @@
     height: 42px;
   }
   
-  .card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); border-radius: 20px; border: 0.5px solid rgba(122,158,135,0.3); padding: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+  /* FORMULARIO ABAJO LIMPIO */
+  .card { background: white; border-radius: 20px; border: 0.5px solid rgba(122,158,135,0.3); padding: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
   .card-intro { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 2rem; line-height: 1.6; }
   .divider { border: none; border-top: 0.5px solid var(--sage-pale); margin: 1.5rem 0; }
   .field { margin-bottom: 1.25rem; }
@@ -147,7 +169,6 @@
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   @media (max-width: 480px) { .card { padding: 1.75rem 1.25rem; } .event-pill { padding: 12px 18px; } }
 
-  /* Ocultación de idiomas secundarios por defecto */
   [data-lang="fr"], [data-lang="de"] { display: none; }
 </style>
 </head>
@@ -160,14 +181,17 @@
     <button class="lang-btn" id="btn-lang-de" onclick="switchLanguage('de')">DEU</button>
   </div>
 
+  <!-- LA TARJETA EN GRANDE ARRIBA -->
+  <div class="tarjeta-container">
+    <img src="invitacion.PNG" alt="Invitación Baby Shower Enzo" class="tarjeta-imagen">
+  </div>
+
   <header class="header">
     <div class="ornament-icons">
-      <!-- Icono Llama -->
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M36 8c1-3 4-3 5-1s-1 6-1 6h3s3 0 3 2-2 3-5 3h-5V8zM36 18h5v12h-9v-6s0-3 4-6zM32 30h16c3 0 5 2 5 5v4c0 2-1 3-3 3H26c-3 0-4-2-4-5v-7" />
         <path d="M26 42v14M32 42v14M44 42v14M50 42v14M26 30l-4 2-1 4" />
       </svg>
-      <!-- Icono Cochecito de Bebé -->
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="24" cy="52" r="5" />
         <circle cx="44" cy="52" r="5" />
@@ -206,6 +230,17 @@
         <span class="pill-value">16:00</span>
       </div>
     </div>
+
+    <!-- SECCIÓN DRESS CODE EN LOS 3 IDIOMAS -->
+    <div class="dress-code-section">
+      <p class="dress-code-title" data-lang="es">Código de vestimenta</p>
+      <p class="dress-code-title" data-lang="fr">Code vestimentaire</p>
+      <p class="dress-code-title" data-lang="de">Dresscode</p>
+      
+      <p class="dress-code-colors" data-lang="es">Beige, blanco o verde pastel</p>
+      <p class="dress-code-colors" data-lang="fr">Beige, blanc ou vert pastel</p>
+      <p class="dress-code-colors" data-lang="de">Beige, Weiß oder Pastellgrün</p>
+    </div>
     
     <div class="baby-icon-container">
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -218,7 +253,6 @@
   </header>
 
   <div class="card" id="form-card">
-    <!-- TEXTOS CORREGIDOS EN LOS 3 IDIOMAS -->
     <p class="card-intro" data-lang="es">Francesca y Dylan te esperan para celebrar el baby shower de Enzo el día 22 de agosto a las 16.</p>
     <p class="card-intro" data-lang="fr">Francesca et Dylan vous attendent pour fêter la baby shower d'Enzo le 22 août à 16h.</p>
     <p class="card-intro" data-lang="de">Francesca und Dylan erwarten dich, um die Babyparty von Enzo am 22. August um 16 Uhr zu feiern.</p>
@@ -447,5 +481,3 @@
   document.querySelectorAll('span[data-lang="es"]').forEach(s => s.style.display = 'inline');
 </script>
 </body> </html>
-
-        
