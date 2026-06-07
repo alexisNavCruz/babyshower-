@@ -26,6 +26,18 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
+  
+  /* FONDO CON TU IMAGEN DE ENZO RECUPERADO */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('invitacion.PNG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15; 
+    pointer-events: none; z-index: 0;
+  }
 
   .page { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
   
@@ -54,24 +66,9 @@
     border-color: var(--sage);
   }
 
-  .header { text-align: center; margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
+  .header { text-align: center; margin-bottom: 2.5rem; animation: fadeUp 0.8s ease both; }
   
-  /* CONTENEDOR PARA LA TARJETA ARRIBA */
-  .tarjeta-container {
-    width: 100%;
-    margin-bottom: 2.5rem;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    background-color: white;
-    animation: fadeUp 0.8s ease both;
-  }
-  .tarjeta-imagen {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
+  /* Contenedor de iconos superiores */
   .ornament-icons {
     display: flex;
     justify-content: center;
@@ -121,6 +118,7 @@
     color: var(--text-muted);
   }
 
+  /* Contenedor para el icono de la llama flotante */
   .baby-icon-container {
     display: flex;
     justify-content: center;
@@ -133,8 +131,7 @@
     height: 42px;
   }
   
-  /* FORMULARIO ABAJO LIMPIO */
-  .card { background: white; border-radius: 20px; border: 0.5px solid rgba(122,158,135,0.3); padding: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+  .card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); border-radius: 20px; border: 0.5px solid rgba(122,158,135,0.3); padding: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
   .card-intro { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 2rem; line-height: 1.6; }
   .divider { border: none; border-top: 0.5px solid var(--sage-pale); margin: 1.5rem 0; }
   .field { margin-bottom: 1.25rem; }
@@ -181,17 +178,14 @@
     <button class="lang-btn" id="btn-lang-de" onclick="switchLanguage('de')">DEU</button>
   </div>
 
-  <!-- LA TARJETA EN GRANDE ARRIBA -->
-  <div class="tarjeta-container">
-    <img src="invitacion.PNG" alt="Invitación Baby Shower Enzo" class="tarjeta-imagen">
-  </div>
-
   <header class="header">
     <div class="ornament-icons">
+      <!-- Icono Llama -->
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M36 8c1-3 4-3 5-1s-1 6-1 6h3s3 0 3 2-2 3-5 3h-5V8zM36 18h5v12h-9v-6s0-3 4-6zM32 30h16c3 0 5 2 5 5v4c0 2-1 3-3 3H26c-3 0-4-2-4-5v-7" />
         <path d="M26 42v14M32 42v14M44 42v14M50 42v14M26 30l-4 2-1 4" />
       </svg>
+      <!-- Icono Cochecito de Bebé -->
       <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="24" cy="52" r="5" />
         <circle cx="44" cy="52" r="5" />
