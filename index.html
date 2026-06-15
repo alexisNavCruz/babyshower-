@@ -221,7 +221,7 @@
         <span class="pill-label" data-lang="es">Hora</span>
         <span class="pill-label" data-lang="fr">Heure</span>
         <span class="pill-label" data-lang="de">Uhrzeit</span>
-        <span class="pill-value">16:00</span>
+        <span class="pill-value">14:00</span>
       </div>
     </div>
 
@@ -247,9 +247,9 @@
   </header>
 
   <div class="card" id="form-card">
-    <p class="card-intro" data-lang="es">Francesca y Dylan te esperan para celebrar el baby shower de Enzo el día 22 de agosto a las 16.</p>
-    <p class="card-intro" data-lang="fr">Francesca et Dylan vous attendent pour fêter la baby shower d'Enzo le 22 août à 16h.</p>
-    <p class="card-intro" data-lang="de">Francesca und Dylan erwarten dich, um die Babyparty von Enzo am 22. August um 16 Uhr zu feiern.</p>
+    <p class="card-intro" data-lang="es">Francesca y Dylan te esperan para celebrar el baby shower de Enzo el día 22 de agosto a las 14.</p>
+    <p class="card-intro" data-lang="fr">Francesca et Dylan vous attendent pour fêter la baby shower d'Enzo le 22 août à 14h.</p>
+    <p class="card-intro" data-lang="de">Francesca und Dylan erwarten dich, um die Babyparty von Enzo am 22. August um 14 Uhr zu feiern.</p>
     <hr class="divider">
 
     <form id="shower-form" action="https://formsubmit.co/janethbelle@gmail.com" method="POST" onsubmit="return false;">
@@ -426,17 +426,17 @@
         if (currentLang === 'es') {
           document.getElementById('success-title').textContent = asiste === 'si' ? '¡Nos vemos pronto!' : '¡Gracias por avisar!';
           document.getElementById('success-msg').textContent = asiste === 'si'
-            ? nombre + ', ¡qué alegría! Francesca y Dylan te esperan el 22 de agosto a las 4:00 PM.'
+            ? nombre + ', ¡qué alegría! Francesca y Dylan te esperan el 22 de agosto a las 2:00 PM.'
             : nombre + ', sentiremos mucho tu ausencia. ¡Muchas gracias por avisar a Francesca y Dylan!';
         } else if (currentLang === 'fr') {
           document.getElementById('success-title').textContent = asiste === 'si' ? 'À bientôt !' : 'Merci de nous avoir prévenus !';
           document.getElementById('success-msg').textContent = asiste === 'si'
-            ? nombre + ', quelle joie ! Francesca et Dylan vous attendent le 22 août à 16h00.'
+            ? nombre + ', quelle joie ! Francesca et Dylan vous attendent le 22 août à 14h00.'
             : nombre + ', nous regretterons votre absence. Merci d\'avoir pris le temps de prévenir Francesca et Dylan !';
         } else {
           document.getElementById('success-title').textContent = asiste === 'si' ? 'Bis bald!' : 'Danke für die Rückmeldung!';
           document.getElementById('success-msg').textContent = asiste === 'si'
-            ? nombre + ', wir freuen uns! Francesca und Dylan erwarten dich am 22. August um 16:00 Uhr.'
+            ? nombre + ', wir freuen uns! Francesca und Dylan erwarten dich am 22. August um 14:00 Uhr.'
             : nombre + ', schade, dass du nicht kommen kannst. Vielen Dank, dass du Francesca und Dylan Bescheid gegeben hast!';
         }
       } else {
