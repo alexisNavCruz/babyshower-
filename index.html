@@ -66,7 +66,7 @@
     border-color: var(--sage);
   }
 
-  .header { text-align: center; margin-bottom: 2.5rem; animation: fadeUp 0.8s ease both; }
+  .header { text-align: center; margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
   
   /* Contenedor de iconos superiores */
   .ornament-icons {
@@ -87,19 +87,42 @@
   .ornament-line.right { background: linear-gradient(90deg, var(--gold), transparent); }
   .ornament-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
   
-  .title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 60px); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 0.5rem; }
+  .title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 60px); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 1.5rem; }
   .title em { font-style: italic; color: var(--sage); }
-  .subtitle { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--text-muted); margin-bottom: 2rem; }
   
-  /* EVENT INFO AJUSTADO PARA TRES BLOQUES */
-  .event-info { display: flex; justify-content: center; flex-wrap: wrap; max-width: 100%; margin: 0 auto; }
-  .event-pill { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 20px; background: white; border: 0.5px solid var(--sage-light); text-align: center; }
+  /* TEXTO PRINCIPAL DE INVITACIÓN ARRIBA */
+  .main-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+  }
+  .main-intro strong {
+    color: var(--text);
+    font-weight: 500;
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 22px;
+  }
+  .main-intro .address-detail {
+    font-size: 15px;
+    font-style: normal;
+    display: block;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* EVENT INFO DE DOS BLOQUES (FECHA Y HORA) */
+  .event-info { display: flex; justify-content: center; max-width: 100%; margin: 0 auto 2rem; }
+  .event-pill { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 28px; background: white; border: 0.5px solid var(--sage-light); text-align: center; min-width: 130px; }
   .event-pill:first-child { border-radius: 40px 0 0 40px; border-right: none; }
-  .event-pill:nth-child(2) { border-right: none; }
   .event-pill:last-child { border-radius: 0 40px 40px 0; }
   .pill-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
-  .pill-value { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.2; }
-  .pill-value-small { font-size: 12px; color: var(--text-muted); display: block; margin-top: 2px; }
+  .pill-value { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--text); line-height: 1.2; }
   
   /* ESTILOS DEL DRESS CODE */
   .dress-code-section {
@@ -134,9 +157,8 @@
     height: 42px;
   }
   
+  /* TARJETA LIMPIA SOLO CON FORMULARIO */
   .card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); border-radius: 20px; border: 0.5px solid rgba(122,158,135,0.3); padding: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-  .card-intro { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 2rem; line-height: 1.6; }
-  .divider { border: none; border-top: 0.5px solid var(--sage-pale); margin: 1.5rem 0; }
   .field { margin-bottom: 1.25rem; }
   .field-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; }
   
@@ -152,7 +174,7 @@
   .radio-btn.active-si { background: var(--sage-pale); border-color: var(--sage); color: #3a6b4d; font-weight: 500; }
   .radio-btn.active-no { background: #fdf0ed; border-color: #e0917a; color: #7a3020; font-weight: 500; }
   
-  .btn-submit { width: 100%; padding: 15px; margin-top: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: white; background: var(--sage); border: none; border-radius: 10px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+  .btn-submit { width: 100%; padding: 15px; margin-top: 0.5rem; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: white; background: var(--sage); border: none; border-radius: 10px; cursor: pointer; transition: background 0.2s, transform 0.1s; }
   .btn-submit:hover { background: #5e8570; }
   .btn-submit:active { transform: scale(0.98); }
   .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -170,8 +192,8 @@
   
   @media (max-width: 520px) { 
     .card { padding: 1.75rem 1.25rem; } 
-    .event-info { flex-direction: column; width: 100%; max-width: 280px; gap: 8px; }
-    .event-pill { border-radius: 15px !important; border: 0.5px solid var(--sage-light) !important; padding: 12px; }
+    .event-info { width: 100%; max-width: 280px; gap: 8px; }
+    .event-pill { border-radius: 15px !important; border: 0.5px solid var(--sage-light) !important; padding: 12px; flex: 1; }
   }
 
   [data-lang="fr"], [data-lang="de"] { display: none; }
@@ -212,10 +234,17 @@
   
     <h1 class="title">Baby Shower<br><em>Enzo</em></h1>
     
-    <p class="subtitle" data-lang="es">Celebración especial</p>
-    <p class="subtitle" data-lang="fr">Célébration spéciale</p>
-    <p class="subtitle" data-lang="de">Besondere Feier</p>
+    <!-- TEXTO DE INVITACIÓN EN EL ENCABEZADO -->
+    <div class="main-intro">
+      <p data-lang="es">Francesca y Dylan te esperan para celebrar el baby shower de Enzo el día 22 de agosto a las 14:00 en:</p>
+      <p data-lang="fr">Francesca et Dylan vous attendent pour fêter la baby shower d'Enzo le 22 août à 14h00 au :</p>
+      <p data-lang="de">Francesca und Dylan erwarten dich, um die Babyparty von Enzo am 22. August um 14:00 Uhr zu feiern im:</p>
+      
+      <strong>Refuge du Grand-Jorat</strong>
+      <span class="address-detail">Chemin des charbonnières, 1072 Forel (lavaux)</span>
+    </div>
     
+    <!-- PÍLDORAS DE FECHA Y HORA -->
     <div class="event-info">
       <div class="event-pill">
         <span class="pill-label" data-lang="es">Fecha</span>
@@ -231,15 +260,9 @@
         <span class="pill-label" data-lang="de">Uhrzeit</span>
         <span class="pill-value">14:00</span>
       </div>
-      <div class="event-pill">
-        <span class="pill-label" data-lang="es">Lugar</span>
-        <span class="pill-label" data-lang="fr">Lieu</span>
-        <span class="pill-label" data-lang="de">Ort</span>
-        <span class="pill-value">Refuge du Grand-Jorat<br><span class="pill-value-small">Forel (lavaux)</span></span>
-      </div>
     </div>
 
-    <!-- SECCIÓN DRESS CODE EN LOS 3 IDIOMAS -->
+    <!-- CÓDIGO DE VESTIMENTA -->
     <div class="dress-code-section">
       <p class="dress-code-title" data-lang="es">Código de vestimenta</p>
       <p class="dress-code-title" data-lang="fr">Code vestimentaire</p>
@@ -260,12 +283,8 @@
     
   </header>
 
+  <!-- TARJETA SOLO CON FORMULARIO -->
   <div class="card" id="form-card">
-    <p class="card-intro" data-lang="es">Francesca y Dylan te esperan para celebrar el baby shower de Enzo el día 22 de agosto a las 14:00 en:<br><strong>Refuge du Grand-Jorat</strong><br>Chemin des charbonnières, 1072 Forel (lavaux)</p>
-    <p class="card-intro" data-lang="fr">Francesca et Dylan vous attendent pour fêter la baby shower d'Enzo le 22 août à 14h00 au :<br><strong>Refuge du Grand-Jorat</strong><br>Chemin des charbonnières, 1072 Forel (lavaux)</p>
-    <p class="card-intro" data-lang="de">Francesca und Dylan erwarten dich, um die Babyparty von Enzo am 22. August um 14:00 Uhr zu feiern im:<br><strong>Refuge du Grand-Jorat</strong><br>Chemin des charbonnières, 1072 Forel (lavaux)</p>
-    <hr class="divider">
-
     <form id="shower-form" action="https://formsubmit.co/janethbelle@gmail.com" method="POST" onsubmit="return false;">
       <input type="hidden" name="_subject" id="form-subject" value="Confirmación Baby Shower Enzo">
       <input type="hidden" name="_captcha" value="false">
