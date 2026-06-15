@@ -98,12 +98,12 @@
   .pill-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
   .pill-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--text); }
   
-  /* ESTILOS DEL DRESS CODE */
-  .dress-code-section {
+  /* ESTILOS DEL DRESS CODE Y DIRECCIÓN */
+  .dress-code-section, .location-section {
     margin-top: 1.5rem;
     text-align: center;
   }
-  .dress-code-title {
+  .dress-code-title, .location-title {
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 2px;
@@ -111,11 +111,12 @@
     color: var(--sage);
     margin-bottom: 6px;
   }
-  .dress-code-colors {
+  .dress-code-colors, .location-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-style: italic;
     color: var(--text-muted);
+    line-height: 1.4;
   }
 
   /* Contenedor para el icono de la llama flotante */
@@ -247,9 +248,9 @@
   </header>
 
   <div class="card" id="form-card">
-    <p class="card-intro" data-lang="es">Francesca y Dylan te esperan para celebrar el baby shower de Enzo el día 22 de agosto a las 14.</p>
-    <p class="card-intro" data-lang="fr">Francesca et Dylan vous attendent pour fêter la baby shower d'Enzo le 22 août à 14h.</p>
-    <p class="card-intro" data-lang="de">Francesca und Dylan erwarten dich, um die Babyparty von Enzo am 22. August um 14 Uhr zu feiern.</p>
+    <p class="card-intro" data-lang="es">Francesca y Dylan te esperan para celebrar el baby shower de Enzo el día 22 de agosto a las 14:00 en:<br><strong>Refuge du Grand-Jorat</strong><br>Chemin des charbonnières, 1072 Forel (lavaux)</p>
+    <p class="card-intro" data-lang="fr">Francesca et Dylan vous attendent pour fêter la baby shower d'Enzo le 22 août à 14h00 au :<br><strong>Refuge du Grand-Jorat</strong><br>Chemin des charbonnières, 1072 Forel (lavaux)</p>
+    <p class="card-intro" data-lang="de">Francesca und Dylan erwarten dich, um die Babyparty von Enzo am 22. August um 14:00 Uhr zu feiern im:<br><strong>Refuge du Grand-Jorat</strong><br>Chemin des charbonnières, 1072 Forel (lavaux)</p>
     <hr class="divider">
 
     <form id="shower-form" action="https://formsubmit.co/janethbelle@gmail.com" method="POST" onsubmit="return false;">
